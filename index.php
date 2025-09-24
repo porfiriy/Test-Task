@@ -16,14 +16,14 @@ try {
 
 //Базовые настройки моих таблиц
 $createUsersTable = "
-CREATE TABLE IF NOT EXIST users (
+CREATE TABLE IF NOT EXISTS users (
    id int AUTO_INCREMENT PRIMARY KEY,
    name VARCHAR(255) NOT NULL
 )";
 $pdo->exec($createUsersTable);
 
 $createOrdersTable = "
-CREATE TABLE IF NOT EXIST orders (
+CREATE TABLE IF NOT EXISTS orders (
    id INT AUTO_INCREMENT PRIMARY KEY,
    title VARCHAR(255) NOT NULL,
    cost DECIMAL(10, 2) NOT NULL,
@@ -35,7 +35,7 @@ $pdo->exec($createOrdersTable);
 
 //Вставлю Наши тестовые данные с пользователями
 
-$checkUsers = pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+$checkUsers = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
 if ($checkUsers == 0) {
    $usersData = [
       ['name' => 'Порфирий Романовский'],
@@ -94,4 +94,4 @@ function getSortLink($column, $currentSort, $currentOrder)
 }
 
 // тут комментарии излишни 
-include 'template.html';
+include 'template.php';

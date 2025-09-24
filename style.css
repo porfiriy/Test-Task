@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+}
+h1 {
+    text-align: center;
+    font-size: 1.5em;
+    color: rebeccapurple;
+}
+#filter {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 1em;
+    border: 2px solid #663399;
+    border-radius: 10px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: white;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+th a {
+    text-decoration: none;
+    color: #2a74c8;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.copyright {
+   position: fixed;
+   bottom: 40px;
+   right: 10px;
+   font-weight: 700;
+   color: #646464;
+}
+.copyright .name {
+   color: #663399;
+}
+
+@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    tr {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+    td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+    td:nth-of-type(1):before { content: "ID Заказа"; }
+    td:nth-of-type(2):before { content: "Заголовок"; }
+    td:nth-of-type(3):before { content: "Цена"; }
+    td:nth-of-type(4):before { content: "Имя Пользователя"; }
+}
+
+@media (min-width: 601px) {
+    h1 {
+        font-size: 2em;
+    }
+    table {
+        max-width: 800px;
+    }
+}
