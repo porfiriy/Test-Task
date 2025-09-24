@@ -66,3 +66,32 @@ if ($checkOrders == 0) {
       $stmt->execute($order);
    }
 }
+
+
+// отсортирую 
+$sortColumn = isset($_GET['sort']) ? $_GET['sort'] : 'orders.id';
+$sortOrder = isset($_GET['order']) && $_GET['order'] === 'desc' ? 'DESC' : 'ASC';
+$allowedColumns = ['orders.id', 'title', 'cost', 'users.name'];
+if (!in_array($sortColumn, $allowedColumns)) {
+   $sortColumn = 'orders.id';
+}
+
+// создаю запрос к базе
+$query = "
+SELECT orders.id AS order_id, orders.title, orders.cost, users.name AS user_name
+FROM orders
+JOIN users ON orders.user_id = users.id
+ORDER BY $sortColumn $sortOrder
+";
+$stmt = $pdo->query($query);
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+//определяю порядок сортировки тута
+function getSortLink($column, $currentSort, $currentOrder)
+{
+   $newOrder = ($currentSort === $column && $currentOrder === 'ASC') ? 'desc' : 'asc';
+   return "?sort=$column&order=$newOrder";
+}
+
+// тут комментарии излишни 
+include 'template.html';
